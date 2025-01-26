@@ -127,6 +127,24 @@ SET session_replication_role = 'origin';
 
 
 -- DATABASE SETUP
-INSERT INTO qban-fardo-express.rol(id_rol, name) VALUES(1, 'ROLE_ADMIN');
-INSERT INTO qban-fardo-express.rol(id_rol, name) VALUES(2, 'ROLE_EXECUTIVE');
-INSERT INTO qban-fardo-express.rol(id_rol, name) VALUES(3, 'ROLE_DELIVERY');
+INSERT INTO qban_fardo_express.rol(id_rol, name) VALUES
+    (1, 'ROLE_ADMIN'),
+    (2, 'ROLE_EXECUTIVE'),
+    (3, 'ROLE_DELIVERY');
+
+INSERT INTO qban_fardo_express.route (id_route, route_url) VALUES
+    (1, '/home.xhtml'),
+    (2, '/login.xhtml'),
+    (3, '/admin/**'),
+    (4, '/executive/**'),
+    (5, '/delivery/**');
+
+INSERT INTO qban_fardo_express.route_has_rol (id_route_role, route_id, rol_id) VALUES
+   (1, 1, 1),
+   (2, 2, 1),
+   (3, 3, 1),
+   (4, 4, 1),
+   (5, 5, 1),
+   (6, 4, 2),
+   (7, 5, 3);
+

@@ -23,7 +23,7 @@ public class Route implements Serializable {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "route_role",
+            name = "route_has_rol",
             joinColumns = @JoinColumn(name = "id_route"),
             inverseJoinColumns = @JoinColumn(name = "id_rol")
     )

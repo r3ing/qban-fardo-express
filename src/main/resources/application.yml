@@ -4,8 +4,8 @@ spring:
     name: qban-fardo-express
   datasource:
     url: jdbc:postgresql://localhost:5432/qban-fardo-express
-    username: password
-    password: postgres
+    username: postgres
+    password: mypassword
     driver-class-name: org.postgresql.Driver
 
     jpa:
@@ -14,7 +14,7 @@ spring:
         show-sql: true
         database-platform: org.hibernate.dialect.PostgreSQLDialect
 
-# Tema (por default es el tema de saga, tema oscuro es vela)
+
 joinfaces:
   primefaces:
     theme: saga

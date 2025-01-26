@@ -6,9 +6,7 @@ import com.reing.repository.RouteRepository;
 import com.reing.service.IRouteService;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,7 +20,8 @@ public class RouteService implements IRouteService {
 
     @Override
     public List<Route> getAll() {
-        return (List<Route>) routeRepository.findAll();
+        return Collections.EMPTY_LIST;
+        //return (List<Route>) routeRepository.findAll();
     }
 
     @Override

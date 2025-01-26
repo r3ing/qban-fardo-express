@@ -54,7 +54,7 @@ public class SecurityConfig {
                     .formLogin(formLogin -> formLogin
                             .loginPage("/login.xhtml").permitAll()
                             .failureUrl("/login.xhtml?error=true")
-                            .defaultSuccessUrl("/home.xhtml")
+                            .defaultSuccessUrl("/system/home.xhtml")
                     )
                     .logout(logout -> logout
                             .logoutUrl("/logout")
