@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "rol")
@@ -20,6 +22,9 @@ public class Rol implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @ManyToMany(mappedBy = "roles")
+    private Set<Route> routes = new HashSet<>();
+
     public Long getIdRol() {
         return idRol;
     }
@@ -34,5 +39,13 @@ public class Rol implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Route> getRoutes() {
+        return routes;
+    }
+
+    public void setRoutes(Set<Route> routes) {
+        this.routes = routes;
     }
 }

@@ -45,10 +45,10 @@ CREATE TABLE IF NOT EXISTS route (
 -- Crear tabla "route_has_rol"
 CREATE TABLE IF NOT EXISTS route_has_rol (
                                              id_route_role SERIAL PRIMARY KEY,
-                                             route_id INT NOT NULL,
-                                             rol_id INT NOT NULL,
-                                             FOREIGN KEY (route_id) REFERENCES route (id_route) ON DELETE CASCADE,
-                                             FOREIGN KEY (rol_id) REFERENCES rol (id_rol) ON DELETE CASCADE
+                                             id_route INT NOT NULL,
+                                             id_rol INT NOT NULL,
+                                             FOREIGN KEY (id_route) REFERENCES route (id_route) ON DELETE CASCADE,
+                                             FOREIGN KEY (id_rol) REFERENCES rol (id_rol) ON DELETE CASCADE
 );
 
 -- Crear tabla "province"
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS address (
 );
 
 -- Crear tabla "rol_has_user"
-CREATE TABLE IF NOT EXISTS rol_has_user (
+CREATE TABLE IF NOT EXISTS user_has_role (
                                             id_rol_user SERIAL PRIMARY KEY,
                                             id_rol INT NOT NULL,
                                             id_user INT NOT NULL,
@@ -139,12 +139,11 @@ INSERT INTO qban_fardo_express.route (id_route, route_url) VALUES
     (4, '/executive/**'),
     (5, '/delivery/**');
 
-INSERT INTO qban_fardo_express.route_has_rol (id_route_role, route_id, rol_id) VALUES
+INSERT INTO qban_fardo_express.route_has_rol (id_route_role, id_route, id_rol) VALUES
    (1, 1, 1),
-   (2, 2, 1),
-   (3, 3, 1),
-   (4, 4, 1),
-   (5, 5, 1),
-   (6, 4, 2),
-   (7, 5, 3);
+   (2, 3, 1),
+   (3, 4, 1),
+   (4, 5, 1),
+   (5, 4, 2),
+   (6, 5, 3);
 

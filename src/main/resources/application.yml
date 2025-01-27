@@ -3,9 +3,9 @@ spring:
   application:
     name: qban-fardo-express
   datasource:
-    url: jdbc:postgresql://localhost:5432/qban-fardo-express
-    username: postgres
-    password: mypassword
+    url: ${APP_DATASOURCE_URL}
+    username: ${APP_DATASOURCE_USERNAME}
+    password: ${APP_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
     jpa:
@@ -13,6 +13,10 @@ spring:
         ddl-auto: validate
         show-sql: true
         database-platform: org.hibernate.dialect.PostgreSQLDialect
+  jpa:
+    properties:
+      hibernate:
+        default_schema: ${APP_DATASOURCE_SCHEMA}
 
 
 joinfaces:

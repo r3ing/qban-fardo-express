@@ -1,10 +1,9 @@
 package com.reing.config.security;
 
-import com.reing.model.entity.Users;
+import com.reing.model.entity.User;
 import com.reing.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,7 +24,7 @@ public class UserCredentialsSecurity implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Users userDb = userRepository.findByUsername(username).orElse(null);
+        User userDb = userRepository.findByUsername(username).orElse(null);
 
         List<GrantedAuthority> grantedAuthorities = null;
 
@@ -35,7 +34,7 @@ public class UserCredentialsSecurity implements UserDetailsService {
                     .map(rol -> new SimpleGrantedAuthority(rol.getName()))
                     .collect(Collectors.toList());
 
-            return new User(
+            return new org.springframework.security.core.userdetails.User(
                     userDb.getUsername(),
                     userDb.getPassword(),
                     userDb.isEnabled(),

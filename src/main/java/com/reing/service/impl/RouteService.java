@@ -20,8 +20,8 @@ public class RouteService implements IRouteService {
 
     @Override
     public List<Route> getAll() {
-        return Collections.EMPTY_LIST;
-        //return (List<Route>) routeRepository.findAll();
+        //return Collections.EMPTY_LIST;
+        return (List<Route>) routeRepository.findAll();
     }
 
     @Override

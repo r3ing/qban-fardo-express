@@ -61,7 +61,7 @@ public class SecurityConfig {
                             .logoutSuccessUrl("/login.xhtml")
                             .deleteCookies("JSESSIONID")
                     )
-                    .exceptionHandling(ex -> ex.accessDeniedPage("/403.xhtml"))
+                    .exceptionHandling(ex -> ex.accessDeniedPage("/templates/403.xhtml"))
                     .addFilterAt(authorizationFilter, UsernamePasswordAuthenticationFilter.class);
             return http.build();
         } catch (Exception ex) {
@@ -74,7 +74,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-/*    @Bean
+    @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
 
         AuthenticationManagerBuilder builder = http.getSharedObject(AuthenticationManagerBuilder.class);
@@ -82,34 +82,5 @@ public class SecurityConfig {
                 .passwordEncoder(passwordEncoder());
 
         return builder.build();
-    }*/
-
-
-
-
-    //creates users in memory
-    @Bean
-    public InMemoryUserDetailsManager userDetailsService() {
-        // Crea un codificador de contraseñas
-        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
-        // Crea un administrador de detalles de usuario en memoria
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-
-        // Crea usuarios manualmente
-        manager.createUser(User.builder()
-                .username("admin")
-                .password(encoder.encode("123"))  // Contraseña codificada
-                .authorities("ROLE_ADMIN")  // Rol de admin
-                .build());
-
-        manager.createUser(User.builder()
-                .username("user")
-                .password(encoder.encode("123"))  // Contraseña codificada
-                .authorities("ROLE_USER")  // Rol de usuario
-                .build());
-
-        // Devuelve el administrador de detalles de usuario con los usuarios definidos
-        return manager;
     }
 }

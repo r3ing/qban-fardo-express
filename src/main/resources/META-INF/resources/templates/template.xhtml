@@ -10,7 +10,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv="content-type"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="mobile-web-app-capable" content="yes"/>
-    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/assets/icons/cfe-icon.png"/>
+<!--    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/assets/icons/cfe-icon.png"/>-->
     <h:outputStylesheet library="assets" name="css/primeflex.css"/>
     <h:outputStylesheet library="assets" name="css/primeicons.css"/>
     <h:outputStylesheet library="assets" name="css/style.css"/>
@@ -44,10 +44,12 @@
                 <a class="menu-button" tabindex="0">
                     <i class="pi pi-bars"></i>
                 </a>
-                <a href="${pageContext.request.contextPath}/META-INF/resources/pages/templates/home.xhtml" class="logo" title="Showcase Home">
+
+                <!--<a href="${pageContext.request.contextPath}/META-INF/resources/pages/templates/home.xhtml" class="logo" title="Showcase Home">
                     <img id="j_idt27" src="${pageContext.request.contextPath}/assets/icons/cfe-icon.png" alt="logo"
-                         style="width: 5rem; height: auto; margin-left: 2rem;"/>
-                </a>
+                         style="width: 4rem; height: auto; margin-left: 2rem;"/>
+                </a>-->
+
                 <!--<div id="app-theme-logo" class="ui-outputpanel ui-widget app-theme" aria-describedby="j_idt28"><img
                         id="app-theme-image"
                         src="/showcase/javax.faces.resource/images/themes/saga.png.xhtml?ln=showcase" alt=""/></div>
@@ -55,11 +57,11 @@
                 <form id="j_idt29" name="j_idt29" method="post" action="/showcase/getstarted.xhtml?jfwid=b41c1"
                       class="topbar-form" enctype="application/x-www-form-urlencoded">
                     <ul class="topbar-menu">
-                        <li><a href="${pageContext.request.contextPath}/META-INF/resources/pages/templates/home.xhtml">Clientes</a></li>
-                        <li class="topbar-submenu"><a href="${pageContext.request.contextPath}/META-INF/resources/templates/home.xhtml" tabindex="0">Envios</a></li>
-                        <li class="topbar-submenu"><a href="${pageContext.request.contextPath}/META-INF/resources/templates/home.xhtml" tabindex="0">Recursos</a></li>
+                        <li><a href="/home.xhtml">Clientes</a></li>
+                        <li class="topbar-submenu"><a href="/home.xhtml" tabindex="0">Envios</a></li>
+                        <li class="topbar-submenu"><a href="/home.xhtml" tabindex="0">Recursos</a></li>
                         <li class="topbar-submenu"><a href="/logout" tabindex="0">Logout</a></li>
-                        <li>v1.0.6-SNAPSHOT</li>
+                        <li>v1.0.0</li>
                     </ul>
                 </form>
             </div>
@@ -70,15 +72,25 @@
                         <section class="surface-section px-4 py-5 md:px-6 lg:px-8 w-full">
                             <div class="flex flex-column lg:flex-row gap-3 justify-content-between lg:align-items-center border-primary py-5"
                                  style="border-top: 7px solid">
+
+                                <div>
+                                    <ui:insert name="body"/>
+                                </div>
+
                                 <div class="flex flex-column gap-2">
                                     <!--<div class="flex align-items-center gap-2">
                                         <h1 class="m-0 font-semibold text-900 text-xl line-height-3">
                                             Bienvenido - <ui:insert name="userName"/>
                                         </h1>
                                     </div>-->
-                                    <p class="mb-0 mt-0 text-base text-600">
+
+                                    <!--<p class="mb-0 mt-0 text-base text-600">
                                         Estas dentro del <ui:insert name="pageName"/>.
-                                    </p>
+                                    </p>-->
+
+
+
+
                                 </div>
                             </div>
                         </section>

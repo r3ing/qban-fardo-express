@@ -11,7 +11,7 @@ import java.util.Set;
 @Table(name = "user")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Users implements Serializable {
+public class User implements Serializable {
 
     @Id
     @Column(name = "id_user")
@@ -29,7 +29,7 @@ public class Users implements Serializable {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "role_has_user",
+            name = "user_has_role",
             joinColumns = @JoinColumn(name = "id_user"),
             inverseJoinColumns = @JoinColumn(name = "id_rol")
     )
