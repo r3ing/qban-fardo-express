@@ -27,6 +27,10 @@ public class User implements Serializable {
     @Column(name = "enabled")
     private boolean enabled;
 
+    @OneToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_ranch", referencedColumnName = "id_branch")
+    private Branch branch;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_has_role",

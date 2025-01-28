@@ -12,13 +12,13 @@ SET search_path TO qban_fardo_express;
 
 -- Crear tabla "rol"
 CREATE TABLE IF NOT EXISTS rol (
-                                   id_rol SERIAL PRIMARY KEY,
+                                   id_rol BIGINT PRIMARY KEY,
                                    name VARCHAR(45) NOT NULL
 );
 
 -- Crear tabla "branch"
 CREATE TABLE IF NOT EXISTS branch (
-                                      id_branch SERIAL PRIMARY KEY,
+                                      id_branch BIGINT PRIMARY KEY,
                                       phone VARCHAR(45),
                                       address TEXT,
                                       state VARCHAR(45),
@@ -26,10 +26,10 @@ CREATE TABLE IF NOT EXISTS branch (
 );
 
 -- Crear tabla "user"
-CREATE TABLE IF NOT EXISTS users (
-                                     id_user SERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS user (
+                                     id_user BIGINT PRIMARY KEY,
                                      username VARCHAR(45) NOT NULL,
-                                     password VARCHAR(45) NOT NULL,
+                                     password TEXT NOT NULL,
                                      enabled BOOLEAN NOT NULL DEFAULT TRUE,
                                      phone BIGINT,
                                      id_branch INT NOT NULL,
@@ -38,13 +38,13 @@ CREATE TABLE IF NOT EXISTS users (
 
 -- Crear tabla "route"
 CREATE TABLE IF NOT EXISTS route (
-                                     id_route SERIAL PRIMARY KEY,
+                                     id_route BIGINT PRIMARY KEY,
                                      route_url VARCHAR(45) NOT NULL
 );
 
 -- Crear tabla "route_has_rol"
 CREATE TABLE IF NOT EXISTS route_has_rol (
-                                             id_route_role SERIAL PRIMARY KEY,
+                                             id_route_role BIGINT PRIMARY KEY,
                                              id_route INT NOT NULL,
                                              id_rol INT NOT NULL,
                                              FOREIGN KEY (id_route) REFERENCES route (id_route) ON DELETE CASCADE,
@@ -53,13 +53,13 @@ CREATE TABLE IF NOT EXISTS route_has_rol (
 
 -- Crear tabla "province"
 CREATE TABLE IF NOT EXISTS province (
-                                        id_province SERIAL PRIMARY KEY,
+                                        id_province BIGINT PRIMARY KEY,
                                         name VARCHAR(45) NOT NULL
 );
 
 -- Crear tabla "town"
 CREATE TABLE IF NOT EXISTS town (
-                                    id_town SERIAL PRIMARY KEY,
+                                    id_town BIGINT PRIMARY KEY,
                                     name VARCHAR(45) NOT NULL,
                                     id_province INT NOT NULL,
                                     FOREIGN KEY (id_province) REFERENCES province (id_province) ON DELETE CASCADE
@@ -67,13 +67,13 @@ CREATE TABLE IF NOT EXISTS town (
 
 -- Crear tabla "shipping_status"
 CREATE TABLE IF NOT EXISTS shipping_status (
-                                               id_shipping_status SERIAL PRIMARY KEY,
+                                               id_shipping_status BIGINT PRIMARY KEY,
                                                status VARCHAR(45) NOT NULL
 );
 
 -- Crear tabla "customer"
 CREATE TABLE IF NOT EXISTS customer (
-                                        id_customer SERIAL PRIMARY KEY,
+                                        id_customer BIGINT PRIMARY KEY,
                                         name VARCHAR(45) NOT NULL,
                                         last_name VARCHAR(45) NOT NULL,
                                         phone VARCHAR(45)
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS customer (
 
 -- Crear tabla "address"
 CREATE TABLE IF NOT EXISTS address (
-                                       id_address SERIAL PRIMARY KEY,
+                                       id_address BIGINT PRIMARY KEY,
                                        beneficiary VARCHAR(45) NOT NULL,
                                        ci BIGINT,
                                        phone BIGINT,
@@ -98,16 +98,16 @@ CREATE TABLE IF NOT EXISTS address (
 
 -- Crear tabla "rol_has_user"
 CREATE TABLE IF NOT EXISTS user_has_role (
-                                            id_rol_user SERIAL PRIMARY KEY,
+                                            id_rol_user BIGINT PRIMARY KEY,
                                             id_rol INT NOT NULL,
                                             id_user INT NOT NULL,
                                             FOREIGN KEY (id_rol) REFERENCES rol (id_rol) ON DELETE CASCADE,
-                                            FOREIGN KEY (id_user) REFERENCES users (id_user) ON DELETE CASCADE
+                                            FOREIGN KEY (id_user) REFERENCES user (id_user) ON DELETE CASCADE
 );
 
 -- Crear tabla "shipping"
 CREATE TABLE IF NOT EXISTS shipping (
-                                        id_shipping SERIAL PRIMARY KEY,
+                                        id_shipping BIGINT PRIMARY KEY,
                                         tracking_number VARCHAR(45),
                                         weight DECIMAL(10, 2),
                                         amount DECIMAL(10, 2),
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS shipping (
                                         id_user INT NOT NULL,
                                         id_shipping_status INT NOT NULL,
                                         FOREIGN KEY (id_address) REFERENCES address (id_address) ON DELETE CASCADE,
-                                        FOREIGN KEY (id_user) REFERENCES users (id_user) ON DELETE CASCADE,
+                                        FOREIGN KEY (id_user) REFERENCES user (id_user) ON DELETE CASCADE,
                                         FOREIGN KEY (id_shipping_status) REFERENCES shipping_status (id_shipping_status) ON DELETE SET NULL
 );
 

@@ -7,17 +7,14 @@ spring:
     username: ${APP_DATASOURCE_USERNAME}
     password: ${APP_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
-
-    jpa:
-      hibernate:
-        ddl-auto: validate
-        show-sql: true
-        database-platform: org.hibernate.dialect.PostgreSQLDialect
   jpa:
     properties:
       hibernate:
         default_schema: ${APP_DATASOURCE_SCHEMA}
-
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 joinfaces:
   primefaces:
