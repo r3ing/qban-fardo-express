@@ -147,3 +147,6 @@ INSERT INTO qban_fardo_express.route_has_rol (id_route_role, id_route, id_rol) V
    (5, 4, 2),
    (6, 5, 3);
 
+INSERT INTO qban_fardo_express.branch (address, email, phone, state) VALUES
+    ('3030 S 3rd St, Louisville, KY 40208', 'cubanfardo@gmail.com', '5026192769', 'KY');
+

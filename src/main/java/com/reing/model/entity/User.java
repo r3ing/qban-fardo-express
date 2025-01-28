@@ -28,7 +28,7 @@ public class User implements Serializable {
     private boolean enabled;
 
     @OneToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_ranch", referencedColumnName = "id_branch")
+    @JoinColumn(name = "id_branch", referencedColumnName = "id_branch")
     private Branch branch;
 
     @ManyToMany(fetch = FetchType.EAGER)
