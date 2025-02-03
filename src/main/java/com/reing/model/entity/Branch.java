@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "branch")
 @NoArgsConstructor
@@ -22,6 +24,9 @@ public class Branch {
     private String state;
 
     private String email;
+
+    @OneToMany(mappedBy = "branch", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<User> users;
 
     public Long getIdBranch() {
         return idBranch;
@@ -61,5 +66,13 @@ public class Branch {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }

@@ -137,7 +137,9 @@ INSERT INTO qban_fardo_express.route (id_route, route_url) VALUES
     (2, '/login.xhtml'),
     (3, '/admin/**'),
     (4, '/executive/**'),
-    (5, '/delivery/**');
+    (5, '/delivery/**'),
+    (6, '/1password1.xhtml');
+
 
 INSERT INTO qban_fardo_express.route_has_rol (id_route_role, id_route, id_rol) VALUES
    (1, 1, 1),
@@ -145,7 +147,10 @@ INSERT INTO qban_fardo_express.route_has_rol (id_route_role, id_route, id_rol) V
    (3, 4, 1),
    (4, 5, 1),
    (5, 4, 2),
-   (6, 5, 3);
+   (6, 5, 3),
+   (7, 6, 1),
+   (8, 6, 2),
+   (9, 6, 3);
 
 INSERT INTO qban_fardo_express.branch (address, email, phone, state) VALUES
     ('3030 S 3rd St, Louisville, KY 40208', 'cubanfardo@gmail.com', '5026192769', 'KY');

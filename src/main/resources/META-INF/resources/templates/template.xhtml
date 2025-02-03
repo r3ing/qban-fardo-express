@@ -3,6 +3,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="jakarta.faces.facelets"
       xmlns:pe="primefaces.extensions"
+      xmlns:p="http://primefaces.org/ui"
 >
 >
 <h:head>
@@ -10,7 +11,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv="content-type"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="mobile-web-app-capable" content="yes"/>
-<!--    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/assets/icons/cfe-icon.png"/>-->
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/assets/icons/cfe-icon.png"/>
     <h:outputStylesheet library="assets" name="css/primeflex.css"/>
     <h:outputStylesheet library="assets" name="css/primeicons.css"/>
     <h:outputStylesheet library="assets" name="css/style.css"/>
@@ -45,26 +46,95 @@
                     <i class="pi pi-bars"></i>
                 </a>
 
-                <!--<a href="${pageContext.request.contextPath}/META-INF/resources/pages/templates/home.xhtml" class="logo" title="Showcase Home">
+                <a href="${pageContext.request.contextPath}/system/home.xhtml" class="logo" title="Showcase Home">
                     <img id="j_idt27" src="${pageContext.request.contextPath}/assets/icons/cfe-icon.png" alt="logo"
                          style="width: 4rem; height: auto; margin-left: 2rem;"/>
-                </a>-->
+                </a>
 
-                <!--<div id="app-theme-logo" class="ui-outputpanel ui-widget app-theme" aria-describedby="j_idt28"><img
-                        id="app-theme-image"
-                        src="/showcase/javax.faces.resource/images/themes/saga.png.xhtml?ln=showcase" alt=""/></div>
--->
-                <form id="j_idt29" name="j_idt29" method="post" action="/showcase/getstarted.xhtml?jfwid=b41c1"
-                      class="topbar-form" enctype="application/x-www-form-urlencoded">
+                <form class="topbar-form">
                     <ul class="topbar-menu">
-                        <li><a href="/home.xhtml">Clientes</a></li>
-                        <li class="topbar-submenu"><a href="/home.xhtml" tabindex="0">Envios</a></li>
-                        <li class="topbar-submenu"><a href="/home.xhtml" tabindex="0">Recursos</a></li>
-                        <li class="topbar-submenu"><a href="/logout" tabindex="0">Logout</a></li>
-                        <li>v1.0.0</li>
+                        <li><a href="/system/home.xhtml">Customers</a></li>
+                        <li class="topbar-submenu"><a href="/system/home.xhtml" tabindex="0">Shipppings</a></li>
+                        <li class="topbar-submenu"><a href="/system/home.xhtml" tabindex="0">Resources</a></li>
+
+                        <li class="topbar-submenu">
+                            <p:menubar styleClass="topbar-submenu" >
+                                <p:submenu icon="pi pi-fw pi-user">
+                                    <p:menuitem value="Hello #{loginMB.getUsername().substring(0, loginMB.getUsername().lastIndexOf('@'))}!"/>
+                                    <p:divider />
+
+
+                                    <!--<h:form id="changePasswordForm">
+                                        <p:commandButton value="Change Password" onclick="PF('changePasswordDialog').show();" />
+                                        <p:dialog header="Change Password" id="changePasswordDialog" widgetVar="changePasswordDialog" modal="true" resizable="false" appendTo="@(body)">
+                                            <p:panelGrid columns="2" styleClass="ui-noborder">
+                                                <p:outputLabel for="currentPassword" value="Current Password:" />
+                                                <p:password id="currentPassword" value="#{changePasswordBean.currentPassword}" required="true" />
+
+                                                <p:outputLabel for="newPassword" value="New Password:" />
+                                                <p:password id="newPassword" value="#{changePasswordBean.newPassword}" required="true" />
+
+                                                <p:outputLabel for="confirmPassword" value="Confirm Password:" />
+                                                <p:password id="confirmPassword" value="#{changePasswordBean.confirmPassword}" required="true" />
+                                            </p:panelGrid>
+
+                                            <p:separator />
+
+                                            <p:commandButton value="Save" action="#{changePasswordBean.changePassword()}" update="changePasswordForm" oncomplete="PF('changePasswordDialog').hide()" />
+                                            <p:commandButton value="Cancel" onclick="PF('changePasswordDialog').hide()" type="button" style="margin-left:10px;" />
+                                        </p:dialog>
+                                    </h:form>-->
+
+
+
+
+                                    <p:menuitem value="Change Password" onclick="PF('changePasswordDialog').show();" />
+                                    <p:menuitem value="Logout" url="/logout" />
+                                </p:submenu>
+                            </p:menubar>
+                        </li>
+
+
+
+                        <!--<li class="topbar-submenu">
+                            <a tabindex="0">Hello #{loginMB.getUsername().substring(0, loginMB.getUsername().lastIndexOf("@"))}!</a>
+                            <ul>
+                                <li>
+                                    <h:form id="changePasswordForm">
+                                        <h:commandLink onclick="PF('changePasswordDialog').show()" icon="pi pi-unlock"
+                                                       style="text-decoration: none;" update="@none">
+                                            <span>Change Password</span>
+                                        </h:commandLink>
+                                        <p:commandButton value="Change Password" onclick="PF('changePasswordDialog').show();" />
+                                        <p:dialog header="Change Password" id="changePasswordDialog" widgetVar="changePasswordDialog" modal="true" resizable="false" appendTo="@(body)">
+                                            <p:panelGrid columns="2" styleClass="ui-noborder">
+                                                <p:outputLabel for="currentPassword" value="Current Password:" />
+                                                <p:password id="currentPassword" value="#{changePasswordBean.currentPassword}" required="true" />
+
+                                                <p:outputLabel for="newPassword" value="New Password:" />
+                                                <p:password id="newPassword" value="#{changePasswordBean.newPassword}" required="true" />
+
+                                                <p:outputLabel for="confirmPassword" value="Confirm Password:" />
+                                                <p:password id="confirmPassword" value="#{changePasswordBean.confirmPassword}" required="true" />
+                                            </p:panelGrid>
+
+                                            <p:separator />
+
+                                            <p:commandButton value="Save" action="#{changePasswordBean.changePassword}" update="changePasswordForm" oncomplete="PF('changePasswordDialog').hide()" />
+                                            <p:commandButton value="Cancel" onclick="PF('changePasswordDialog').hide()" type="button" style="margin-left:10px;" />
+                                        </p:dialog>
+                                    </h:form>
+                                </li>
+                                <li><a href="/logout"><span>Logout</span></a></li>
+                            </ul>
+                        </li>-->
+
+
                     </ul>
                 </form>
             </div>
+
+
 
             <div class="layout-content">
                 <div class="content-section documentation">
@@ -89,8 +159,6 @@
                                     </p>-->
 
 
-
-
                                 </div>
                             </div>
                         </section>
@@ -100,8 +168,8 @@
 
             <div class="layout-footer">
                 <div class="layout-footer-item1">
-                    <span>PrimeFaces v14.0.6-SNAPSHOT by </span>
-                    <a href="https://www.primetek.com.tr">PrimeTek</a>
+                    <span>v1.0.0-SNAPSHOT by </span>
+                    <a href="https://www.primetek.com.tr">R3ing</a>
                 </div>
 
                 <div class="layout-footer-item1">

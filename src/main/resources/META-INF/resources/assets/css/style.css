@@ -56,5 +56,11 @@ body {
     border-bottom: 2px solid #007ad9;
 }
 
+.container {
+    max-width: 120rem;
+    margin: 0 auto;
+    width: 100%;
+}
+
 
 

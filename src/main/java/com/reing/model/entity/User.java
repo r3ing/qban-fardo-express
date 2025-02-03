@@ -24,11 +24,11 @@ public class User implements Serializable {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "enabled")
+    @Column(name = "enabled" , columnDefinition = "boolean default true")
     private boolean enabled;
 
-    @OneToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_branch", referencedColumnName = "id_branch")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_branch")
     private Branch branch;
 
     @ManyToMany(fetch = FetchType.EAGER)
