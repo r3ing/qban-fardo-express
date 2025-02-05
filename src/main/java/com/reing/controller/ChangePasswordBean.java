@@ -1,18 +1,16 @@
 package com.reing.controller;
 
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
-//@Named
-@Component("changePasswordBean")
-@ViewScoped
+@Named
 //@SessionScoped
+//@ViewScoped
+@RequestScoped
 public class ChangePasswordBean implements Serializable {
 
     private String currentPassword;
