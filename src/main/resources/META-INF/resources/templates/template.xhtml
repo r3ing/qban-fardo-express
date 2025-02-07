@@ -3,7 +3,6 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="jakarta.faces.facelets"
       xmlns:pe="primefaces.extensions"
-      xmlns:p="http://primefaces.org/ui"
 >
 >
 <h:head>
@@ -25,13 +24,15 @@
             <!--<div>
                 <p:graphicImage library="assets" name="images/header.jpg" alt="header-image" style="display:flex; width: 100%; height: 15rem"/>
             </div>-->
-            <!--      <div class="header">
-                            <h:link outcome="/index">
-                                <p:graphicImage library="assets" name="images/logo.png" alt="Logo"
-                                                style="width: 200px; height: 90px; margin-left: 2rem;"/>
-                            </h:link>
+            <!--
+            <div class="header">
+                <h:link outcome="/index">
+                    <p:graphicImage library="assets" name="images/logo.png" alt="Logo"
+                                    style="width: 200px; height: 90px; margin-left: 2rem;"/>
+                </h:link>
 
-                        </div>-->
+            </div>
+            -->
 
 
             <!-- Logo -->
@@ -41,131 +42,9 @@
                 </h:outputLink>
             </div>-->
 
-            <div class="layout-topbar">
-                <a class="menu-button" tabindex="0">
-                    <i class="pi pi-bars"></i>
-                </a>
-
-                <a href="${pageContext.request.contextPath}/system/home.xhtml" class="logo" title="Showcase Home">
-                    <img id="j_idt27" src="${pageContext.request.contextPath}/assets/icons/cfe-icon.png" alt="logo"
-                         style="width: 4rem; height: auto; margin-left: 2rem;"/>
-                </a>
-
-                <form class="topbar-form">
-                    <ul class="topbar-menu">
-                        <li><a href="/system/home.xhtml">Customers</a></li>
-                        <li class="topbar-submenu"><a href="/system/home.xhtml" tabindex="0">Shipppings</a></li>
-                        <li class="topbar-submenu"><a href="/system/home.xhtml" tabindex="0">Resources</a></li>
-
-                        <li class="topbar-submenu">
-                            <p:menubar styleClass="topbar-submenu">
-                                <p:submenu icon="pi pi-fw pi-user">
-                                    <p:menuitem
-                                            value="Hello #{loginMB.getUsername().substring(0, loginMB.getUsername().lastIndexOf('@'))}!"/>
-                                    <p:divider/>
-
-
-                                    <!--<h:form id="changePasswordForm">
-                                        <p:commandButton value="Change Password" onclick="PF('changePasswordDialog').show();" />
-                                        <p:dialog header="Change Password" id="changePasswordDialog" widgetVar="changePasswordDialog" modal="true" resizable="false" appendTo="@(body)">
-                                            <p:panelGrid columns="2" styleClass="ui-noborder">
-                                                <p:outputLabel for="currentPassword" value="Current Password:" />
-                                                <p:password id="currentPassword" value="#{changePasswordBean.currentPassword}" required="true" />
-
-                                                <p:outputLabel for="newPassword" value="New Password:" />
-                                                <p:password id="newPassword" value="#{changePasswordBean.newPassword}" required="true" />
-
-                                                <p:outputLabel for="confirmPassword" value="Confirm Password:" />
-                                                <p:password id="confirmPassword" value="#{changePasswordBean.confirmPassword}" required="true" />
-                                            </p:panelGrid>
-
-                                            <p:separator />
-
-                                            <p:commandButton value="Save" action="#{changePasswordBean.changePassword}" update="changePasswordForm" oncomplete="PF('changePasswordDialog').hide()" />
-                                            <p:commandButton value="Cancel" onclick="PF('changePasswordDialog').hide()" type="button" style="margin-left:10px;" />
-                                        </p:dialog>
-                                    </h:form>-->
-
-
-                                    <p:menuitem value="Change Password" onclick="PF('changePasswordDialog').show();"/>
-                                    <p:menuitem value="Logout" url="/logout"/>
-                                </p:submenu>
-                            </p:menubar>
-                        </li>
-
-
-                        <li class="topbar-submenu">
-                            <a tabindex="0">Hello #{loginMB.getUsername().substring(0, loginMB.getUsername().lastIndexOf("@"))}!</a>
-                            <ul>
-                                <li>
-                                    <h:form id="changePasswordForm">
-                                        <h:commandLink onclick="PF('changePasswordDialog').show()" icon="pi pi-unlock"
-                                                       style="text-decoration: none;" update="@none">
-                                            <span>Change Password</span>
-                                        </h:commandLink>
-                                        <p:commandButton value="Change Password"
-                                                         onclick="PF('changePasswordDialog').show();"/>
-                                        <p:dialog header="Change Password" id="changePasswordDialog"
-                                                  widgetVar="changePasswordDialog" modal="true" resizable="false"
-                                                  appendTo="@(body)">
-                                            <div class="ui-fluid formgrid grid">
-                                                <div class="field col-12">
-                                                    <p:outputLabel for="currentPassword" value="Current Password:"/>
-                                                    <p:password id="currentPassword"
-                                                                value="#{changePasswordBean.currentPassword}"
-                                                                required="true"/>
-                                                </div>
-                                                <div class="field col-12">
-                                                    <p:outputLabel for="newPassword" value="New Password:"/>
-                                                    <p:password id="newPassword"
-                                                                value="#{changePasswordBean.newPassword}"
-                                                                required="true"
-                                                                toggleMask="true"
-                                                                feedback="true"
-                                                                weakLabel="Weak"
-                                                                goodLabel="Good"
-                                                                strongLabel="Strong"/>
-
-                                                </div>
-                                                <div class="field col-12">
-                                                    <p:outputLabel for="confirmPassword" value="Confirm Password:"/>
-                                                    <p:password id="confirmPassword"
-                                                                value="#{changePasswordBean.confirmPassword}"
-                                                                required="true"
-                                                                toggleMask="true"
-                                                                feedback="true"
-                                                                weakLabel="Weak"
-                                                                goodLabel="Good"
-                                                                strongLabel="Strong"/>
-<!--                                                    <small class="block ui-state-error">Username is not available.</small>-->
-                                                </div>
-                                            </div>
-
-                                            <p:separator/>
-                                            <div class="flex-content align-items-end">
-                                            <p:commandButton value="Save" action="#{changePasswordBean.changePassword}"
-                                                             update="changePasswordForm"
-                                                             icon="pi pi-check"
-                                                             styleClass="ui-button-outlined"
-                                                             oncomplete="PF('changePasswordDialog').hide()"/>
-                                            <p:commandButton value="Cancel" onclick="PF('changePasswordDialog').hide()"
-                                                             type="button"
-                                                             icon="pi pi-sign-out"
-                                                             styleClass="ui-button-outlined ui-button-secondary"
-                                                             style="margin-left:10px;"/>
-                                            </div>
-                                        </p:dialog>
-                                    </h:form>
-                                </li>
-                                <li><a href="/logout"><span>Logout</span></a></li>
-                            </ul>
-                        </li>
-
-
-                    </ul>
-                </form>
-            </div>
-
+            <ui:insert name="header">
+                <ui:include src="header.xhtml"/>
+            </ui:insert>
 
             <div class="layout-content">
                 <div class="content-section documentation">
@@ -197,24 +76,11 @@
                 </div>
             </div>
 
-            <div class="layout-footer">
-                <div class="layout-footer-item1">
-                    <span>v1.0.0-SNAPSHOT by </span>
-                    <a href="https://www.primetek.com.tr">R3ing</a>
-                </div>
+            <ui:insert name="footer">
+                <ui:include src="footer.xhtml"/>
+            </ui:insert>
 
-                <div class="layout-footer-item1">
-                    <a href="https://github.com/primefaces/primefaces" class="mr-3" title="GitHub">
-                        <i class="pi pi-github"></i>
-                    </a>
-                    <a href="https://twitter.com/primefaces" class="mr-3" title="Twitter">
-                        <i class="pi pi-twitter"></i>
-                    </a>
-                    <a href="https://discord.com/invite/gzKFYnpmCY" title="Discord">
-                        <i class="pi pi-discord"></i>
-                    </a>
-                </div>
-            </div>
+
         </pe:layoutPane>
     </pe:layout>
 </h:body>

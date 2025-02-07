@@ -1,21 +1,29 @@
 package com.reing.controller;
 
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
 
-//@Named
-//@SessionScoped
-//@ViewScoped
-//@RequestScoped
-public class ChangePasswordBean implements Serializable {
+@Named
+@ViewScoped
+public class UserBean implements Serializable {
 
-    private String currentPassword;
-    private String newPassword;
-    private String confirmPassword;
+    private String currentPassword="";
+    private String newPassword="";
+    private String confirmPassword="";
+
+    public String getUsername() {
+        Object userData = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (userData instanceof UserDetails) {
+            return ((UserDetails) userData).getUsername();
+        }
+
+        return userData.toString();
+    }
 
     public void changePassword() {
         if (!newPassword.equals(confirmPassword)) {
@@ -23,7 +31,16 @@ public class ChangePasswordBean implements Serializable {
             return;
         }
         System.out.println("Password changed successfully!");
-        // Aquí puedes agregar lógica para actualizar la contraseña en la base de datos
+    }
+
+    private boolean showPasswordDialog = false;
+
+    public boolean isShowPasswordDialog() {
+        return showPasswordDialog;
+    }
+
+    public void showChangePasswordDialog() {
+        this.showPasswordDialog = true;
     }
 
     public String getCurrentPassword() {
@@ -49,4 +66,5 @@ public class ChangePasswordBean implements Serializable {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
+
 }

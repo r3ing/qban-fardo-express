@@ -15,10 +15,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class LoginBeanTest {
+class UserBeanTest {
 
     @InjectMocks
-    private LoginBean loginBean;
+    private UserBean userBean;
 
     @Mock
     private SecurityContext securityContext;
@@ -40,7 +40,7 @@ class LoginBeanTest {
         when(authentication.getPrincipal()).thenReturn(userDetails);
         when(userDetails.getUsername()).thenReturn("testUser");
 
-        String username = loginBean.getUsername();
+        String username = userBean.getUsername();
         assertEquals("testUser", username);
     }
 
@@ -48,7 +48,7 @@ class LoginBeanTest {
     void testGetUsername_WhenPrincipalIsString() {
         when(authentication.getPrincipal()).thenReturn("anonymousUser");
 
-        String username = loginBean.getUsername();
+        String username = userBean.getUsername();
         assertEquals("anonymousUser", username);
     }
 }
