@@ -1,0 +1,72 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="jakarta.faces.core"
+                template="../templates/template.xhtml">
+
+    <ui:define name="title">
+        Customers
+    </ui:define>
+
+    <ui:define name="body">
+        <div class="content-section introduction">
+            <div class="">
+<!--                <h3>Customers</h3>-->
+            </div>
+        </div>
+        <div class="content-section implementation">
+            <div class="card crud-demo">
+                <h:form id="form">
+                    <p:growl id="messages" showDetail="true"/>
+
+                    <p:dataTable id="dt-customers" widgetVar="dtCustomers" var="customer"
+                                 value="#{customerBean.customers}"
+                                 reflow="true" styleClass="customers-table"
+                                 rowKey="#{customer.idCustomer}" paginator="true" rows="10" selectionRowMode="add"
+                                 paginatorPosition="bottom">
+                        <f:facet name="header">
+                            <div class="table-header">
+                                <span class="table-title" style="font-weight: bold">CUSTOMERS</span>
+                                <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
+                        <p:inputText id="globalFilter" onkeyup="PF('dtCustomers').filter()" placeholder="Search"/>
+                    </span>
+                            </div>
+                        </f:facet>
+
+                        <!--<p:ajax event="rowSelect" update=":form:delete-customers-button" />
+                        <p:ajax event="rowUnselect" update=":form:delete-customers-button" />
+                        <p:ajax event="rowSelectCheckbox" update=":form:delete-customers-button" />
+                        <p:ajax event="rowUnselectCheckbox" update=":form:delete-customers-button" />
+                        <p:ajax event="toggleSelect" update=":form:delete-customers-button" />-->
+
+                        <p:column headerText="Name" sortBy="#{customer.name}" filterBy="#{customer.name}">
+                            <h:outputText value="#{customer.name}"/>
+                        </p:column>
+                        <p:column headerText="Last Name" sortBy="#{customer.lastName}" filterBy="#{customer.lastName}">
+                            <h:outputText value="#{customer.lastName}"/>
+                        </p:column>
+                        <p:column headerText="Phone" sortBy="#{customer.phone}" filterBy="#{customer.phone}">
+                            <h:outputText value="#{customer.phone}"/>
+                        </p:column>
+                        <!--<p:column exportable="false" ariaHeaderText="Actions">
+                            <p:commandButton icon="pi pi-pencil" update=":dialogs:manage-customer-content"
+                                             oncomplete="PF('manageCustomerDialog').show()"
+                                             styleClass="edit-button rounded-button ui-button-success" process="@this">
+                                <f:setPropertyActionListener value="#{customer}" target="#{customerBean.selectedCustomer}" />
+                                <p:resetInput target=":dialogs:manage-customer-content" />
+                            </p:commandButton>
+                            <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash"
+                                             process="@this"
+                                             oncomplete="PF('deleteCustomerDialog').show()">
+                                <f:setPropertyActionListener value="#{customer}" target="#{customerBean.selectedCustomer}" />
+                            </p:commandButton>
+                        </p:column>-->
+                    </p:dataTable>
+                </h:form>
+            </div>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

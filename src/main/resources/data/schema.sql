@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS customer (
                                         id_customer BIGINT PRIMARY KEY,
                                         name VARCHAR(45) NOT NULL,
                                         last_name VARCHAR(45) NOT NULL,
-                                        phone VARCHAR(45)
+                                        phone BIGINT
 );
 
 -- Crear tabla "address"

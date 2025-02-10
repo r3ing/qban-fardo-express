@@ -16,13 +16,13 @@
 
         <form class="topbar-form">
             <ul class="topbar-menu">
-                <li><a href="/system/home.xhtml">Customers</a></li>
+                <li><a href="/executive/customer.xhtml">Customers</a></li>
                 <li class="topbar-submenu"><a href="/system/home.xhtml" tabindex="0">Shipppings</a></li>
                 <li class="topbar-submenu"><a href="/system/home.xhtml" tabindex="0">Resources</a></li>
 
                 <li class="topbar-submenu">
                     <p:menubar styleClass="topbar-submenu">
-                        <p:submenu icon="pi pi-users">
+                        <p:submenu icon="pi pi-cog">
                             <p:menuitem icon="pi pi-user"
                                     value="Hello #{userBean.getUsername().substring(0, userBean.getUsername().lastIndexOf('@'))}!"/>
                             <p:divider/>
