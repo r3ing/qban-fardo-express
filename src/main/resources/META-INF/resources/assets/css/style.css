@@ -109,14 +109,27 @@ body {
     width: 100%;
 }
 
-.table-header {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    /*align-items: center;*/
+body .ui-datatable .ui-datatable-header {
+    text-align: right;
+    color: var(--primary-color);
+}
+
+.crud-demo .table-header {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: flex-end;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+/*.table-header {
+    text-align: left;
     color: var(--primary-color);
     font-size: 1.5rem !important;
-}
+}*/
 
 @media (min-width: 768px) {
     .table-header1 {
@@ -125,10 +138,11 @@ body {
     }
 }
 
-.table-title1 {
+.table-title {
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
+    color: var(--primary-color);
 }
 
 

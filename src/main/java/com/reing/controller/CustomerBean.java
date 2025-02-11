@@ -37,4 +37,5 @@ public class CustomerBean implements Serializable {
     public void setSelectedCustomer(Customer selectedCustomer) {
         this.selectedCustomer = selectedCustomer;
     }
+
 }

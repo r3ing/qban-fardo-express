@@ -12,13 +12,26 @@
     <ui:define name="body">
         <div class="content-section introduction">
             <div class="">
-<!--                <h3>Customers</h3>-->
+                <!--                <h3>Customers</h3>-->
             </div>
         </div>
-        <div class="content-section implementation">
+        <div class="content-section implementation" style="padding-top: 0.2rem; padding-bottom: 0.2rem">
             <div class="card crud-demo">
                 <h:form id="form">
                     <p:growl id="messages" showDetail="true"/>
+
+                    <p:toolbar>
+                        <p:toolbarGroup align="left">
+                            <span style="font-size: 1.3rem;  font-weight: bold; color: var(--primary-color)">CUSTOMERS</span>
+                        </p:toolbarGroup>
+                        <p:toolbarGroup align="right">
+                            <p:commandButton value="New Customer"
+                                             icon="pi pi-user-plus"
+                                             styleClass="ui-button-outlined"
+                                             ajax="false">
+                            </p:commandButton>
+                        </p:toolbarGroup>
+                    </p:toolbar>
 
                     <p:dataTable id="dt-customers" widgetVar="dtCustomers" var="customer"
                                  value="#{customerBean.customers}"
@@ -26,19 +39,12 @@
                                  rowKey="#{customer.idCustomer}" paginator="true" rows="10" selectionRowMode="add"
                                  paginatorPosition="bottom">
                         <f:facet name="header">
-                            <div class="table-header">
-                                <span class="table-title" style="font-weight: bold">CUSTOMERS</span>
-                                <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
-                        <p:inputText id="globalFilter" onkeyup="PF('dtCustomers').filter()" placeholder="Search"/>
-                    </span>
+                            <div>
+                                <span class="filter-container ui-input-icon-left" style="text-align: right;"> <i class="pi pi-search"></i>
+                                    <p:inputText id="globalFilter" size="50" onkeyup="PF('dtCustomers').filter()" placeholder="Search"/>
+                                </span>
                             </div>
                         </f:facet>
-
-                        <!--<p:ajax event="rowSelect" update=":form:delete-customers-button" />
-                        <p:ajax event="rowUnselect" update=":form:delete-customers-button" />
-                        <p:ajax event="rowSelectCheckbox" update=":form:delete-customers-button" />
-                        <p:ajax event="rowUnselectCheckbox" update=":form:delete-customers-button" />
-                        <p:ajax event="toggleSelect" update=":form:delete-customers-button" />-->
 
                         <p:column headerText="Name" sortBy="#{customer.name}" filterBy="#{customer.name}">
                             <h:outputText value="#{customer.name}"/>
