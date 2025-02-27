@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@Component
+//@Component
 public class AuthorizationFilter extends OncePerRequestFilter {
 
     private final IRouteService routeService;
@@ -27,7 +27,7 @@ public class AuthorizationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         String requestURI = request.getRequestURI();
-
+        System.out.println(requestURI);
         Map<String, List<String>> mapRoutes = routeService.getRouteRolMappings();
 
         List<String> authRoles = mapRoutes.get(requestURI);
@@ -40,7 +40,7 @@ public class AuthorizationFilter extends OncePerRequestFilter {
                         .anyMatch(authorities -> authRoles.contains(authorities.getAuthority()));
 
                 if (!accessRol) {
-                    request.getRequestDispatcher("/403.xhtml").forward(request, response);
+                    request.getRequestDispatcher("/templates/403.xhtml").forward(request, response);
                 }
             }
         }

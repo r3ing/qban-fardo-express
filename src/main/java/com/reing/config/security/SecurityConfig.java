@@ -26,11 +26,8 @@ public class SecurityConfig {
 
     private final UserCredentialsSecurity userCredentialsSecurity;
 
-    private final AuthorizationFilter authorizationFilter;
-
-    public SecurityConfig(UserCredentialsSecurity userCredentialsSecurity, AuthorizationFilter authorizationFilter) {
+    public SecurityConfig(UserCredentialsSecurity userCredentialsSecurity) {
         this.userCredentialsSecurity = userCredentialsSecurity;
-        this.authorizationFilter = authorizationFilter;
     }
 
     //Helper method to create path matches with MVC
@@ -47,6 +44,9 @@ public class SecurityConfig {
                     authorize
                             .requestMatchers(mvc.pattern("/login.xhtml")).permitAll()
                             .requestMatchers(new AntPathRequestMatcher("/jakarta.faces.resource/**")).permitAll()
+                            .requestMatchers(mvc.pattern("/executive/**")).hasAnyAuthority("ROLE_EXECUTIVE")
+                            .requestMatchers(mvc.pattern("/delivery/**")).hasAnyAuthority("ROLE_DELIVERY")
+                            .requestMatchers(mvc.pattern("/**")).hasAnyAuthority("ROLE_ADMIN")
                             .anyRequest()
                             .authenticated();
                 }
@@ -61,8 +61,7 @@ public class SecurityConfig {
                             .logoutSuccessUrl("/login.xhtml")
                             .deleteCookies("JSESSIONID")
                     )
-                    .exceptionHandling(ex -> ex.accessDeniedPage("/templates/403.xhtml"))
-                    .addFilterAt(authorizationFilter, UsernamePasswordAuthenticationFilter.class);
+                    .exceptionHandling(ex -> ex.accessDeniedPage("/templates/403.xhtml"));
             return http.build();
         } catch (Exception ex) {
             throw new BeanCreationException("Wrong spring security configuration", ex);

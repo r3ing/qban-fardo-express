@@ -19,7 +19,7 @@ public class Customer {
     
     private String name;
     private String lastName;
-    private String phone;
+    private Long phone;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Address> addresses;
@@ -48,11 +48,11 @@ public class Customer {
         this.lastName = lastName;
     }
 
-    public String getPhone() {
+    public Long getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(Long phone) {
         this.phone = phone;
     }
 
