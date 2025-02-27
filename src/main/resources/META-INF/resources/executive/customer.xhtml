@@ -5,6 +5,8 @@
                 xmlns:f="jakarta.faces.core"
                 template="../templates/template.xhtml">
 
+
+
     <ui:define name="title">
         Customers
     </ui:define>
@@ -17,7 +19,7 @@
         </div>
         <div class="content-section implementation" style="padding-top: 0.2rem; padding-bottom: 0.2rem">
             <div class="card crud-demo">
-                <h:form id="form">
+                <h:form>
                     <p:growl id="messages" showDetail="true"/>
 
                     <p:toolbar>
@@ -27,8 +29,9 @@
                         <p:toolbarGroup align="right">
                             <p:commandButton value="New Customer"
                                              icon="pi pi-user-plus"
-                                             styleClass="ui-button-outlined"
-                                             ajax="false">
+                                             styleClass="ui-button-raised"
+                                             type="button"
+                                             onclick="PF('myDialog').show();">
                             </p:commandButton>
                         </p:toolbarGroup>
                     </p:toolbar>
@@ -36,7 +39,7 @@
                     <p:dataTable id="dt-customers" widgetVar="dtCustomers" var="customer"
                                  value="#{customerBean.customers}"
                                  reflow="true" styleClass="customers-table"
-                                 rowKey="#{customer.idCustomer}" paginator="true" rows="10" selectionRowMode="add"
+                                 rowKey="#{customer.idCustomer}" paginator="true" rows="15" selectionRowMode="add"
                                  paginatorPosition="bottom">
                         <f:facet name="header">
                             <div>
@@ -69,6 +72,50 @@
                             </p:commandButton>
                         </p:column>-->
                     </p:dataTable>
+
+                    <p:dialog header="#{!customerBean.selectedCustomer ? 'New Customer' : 'Update Customer'}" widgetVar="myDialog" modal="true" appendTo="@(body)"
+                              showEffect="fade" hideEffect="fade" resizable="false" closeOnEscape="true">
+                        <h:form id="customerForm">
+
+                                <h:panelGrid cellpadding="1">
+
+                                    <h:outputLabel for="name" value="Name:" />
+                                    <p:inputText id="name" size="40" value="#{customerBean.selectedCustomer.name}" required="true"
+                                                 validatorMessage="Only letters are allowed">
+                                        <f:validateRegex pattern="^[A-Za-z]+$"/>
+                                    </p:inputText>
+                                    <p:message for="name" />
+
+                                    <h:outputLabel for="lastName" value="Last Name:" />
+                                    <p:inputText id="lastName" size="40" value="#{customerBean.selectedCustomer.lastName}" required="true"
+                                                 validatorMessage="Only letters are allowed">
+                                        <f:validateRegex pattern="^[A-Za-z]+$"/>
+                                    </p:inputText>
+                                    <p:message for="lastName" />
+
+                                    <h:outputLabel for="phone" value="Phone:" />
+                                    <p:inputText id="phone" size="40" value="#{customerBean.selectedCustomer.phone}" required="true"
+                                                 validatorMessage="Phone must be 10 digits">
+                                        <f:validateRegex pattern="^\d{10}$"/>
+                                    </p:inputText>
+                                    <p:message for="phone" />
+
+                                </h:panelGrid>
+                                <div style="text-align: right;">
+                                <p:commandButton value="Cancel"
+                                                 icon="pi pi pi-times"
+                                                 type="button"
+                                                 styleClass="ui-button-raised ui-button-secondary ui-button-flat ml-0"
+                                                 onclick="PF('myDialog').hide();"/>
+
+                                <p:commandButton value="Submit"
+                                                 action="#{customerBean.saveCustomer}"
+                                                 icon="pi pi-user-plus"
+                                                 styleClass="ui-button-raised ml-2"
+                                                 update="customerForm" />
+                                </div>
+                        </h:form>
+                    </p:dialog>
                 </h:form>
             </div>
         </div>

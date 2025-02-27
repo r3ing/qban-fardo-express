@@ -338,12 +338,6 @@ p {
 
 /*----------------------------------*/
 
-
-.ui-dialog {
-    z-index: 10000 !important;
-    display: block !important;
-}
-
 body .ui-menu.ui-menubar {
     padding: .5rem !important;
     background: var(--surface-a) !important;
@@ -2060,7 +2054,7 @@ pre[class*=language-]:after, pre[class*=language-]:before {
     box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23)
 }
 
-.crud-demo .ui-dialog .product-image {
+/*.crud-demo .ui-dialog .product-image {
     width: 250px;
     margin: 0 auto 2rem auto;
     display: block
@@ -2068,7 +2062,7 @@ pre[class*=language-]:after, pre[class*=language-]:before {
 
 .crud-demo .ui-dialog-footer .ui-button {
     min-width: 6rem
-}
+}*/
 
 .crud-demo .ui-datatable .ui-column-filter {
     display: none

@@ -26,6 +26,13 @@ public class CustomerBean implements Serializable {
         this.customers = this.customerService.getAll();
     }
 
+    public Customer saveCustomer() {
+
+        System.out.println(selectedCustomer);
+        return null;
+    }
+
+
     public List<Customer> getCustomers() {
         return customers;
     }
